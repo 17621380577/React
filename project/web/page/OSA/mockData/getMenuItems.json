@@ -1,0 +1,40 @@
+{
+  "status": 200,
+  "errMsg": "xxx",
+  "data": {
+    "menuItems": [
+      {
+        "key": "userCenter",
+        "name": "用户中心",
+        "url": "",
+        "children": [
+          {
+            "key": "userCenter-2fa",
+            "name": "2FA设置",
+            "url": "/userCenter/2fa"
+          },
+          {
+            "key": "userCenter-modify",
+            "name": "修改密码",
+            "url": "/userCenter/modify"
+          }
+        ]
+      },{
+        "key": "TradingMarketManangement",
+        "name": "Trading Market Manangement",
+        "url": "",
+        "children": [
+          {
+            "key": "ProductManagement",
+            "name": "Product Management",
+            "url": "/TradingMarketManangement/ProductManagement"
+          },{
+            "key": "ProductGroupManagement",
+            "name": "Product Group Management",
+            "url": "/TradingMarketManangement/ProductGroupManagement"
+          }
+        ]
+      }
+    ]
+  }
+}

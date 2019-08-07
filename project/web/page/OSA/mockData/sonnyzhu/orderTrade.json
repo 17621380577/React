@@ -1,0 +1,18 @@
+[
+    {
+        "amount": "1",
+        "fee": "1",
+        "price": "1",
+        "priceSource": "1",
+        "tradeDatetime": "2019-02-22 19:22:00",
+        "volume": "1"
+    },
+    {
+        "amount": "1",
+        "fee": "1",
+        "price": "1",
+        "priceSource": "2",
+        "tradeDatetime": "2019-02-22 19:22:00",
+        "volume": "1"
+    }
+]

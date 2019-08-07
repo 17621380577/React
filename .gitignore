@@ -1,0 +1,5 @@
+.idea/
+node_modules/
+osa-output
+build/config/devConfig.json
+tsconfig.json
