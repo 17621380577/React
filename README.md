@@ -11,7 +11,7 @@ npm install
 在build/config目录下添加devConfig.json文件，内容如下：
 ```javascript
 {
-    "projectName": "OSA",
+    "projectName": "",
     "host": "",
     "port": "",
     "deployContent": {
@@ -32,7 +32,7 @@ npm start
 ##1.4 访问本地站点
 在浏览器地址栏中输入
 ```sh
-http://localhost:6060/web/exchange/exchange.html
+http://localhost:6060/
 ```
 查看开发环境编译结果
 
@@ -58,10 +58,9 @@ http://localhost:6060/web/exchange/exchange.html
 - 整个架构从上至下分为client,view,logic和common四个层次。每个层级的颜色深浅也有特殊含义，层级颜色越深的表示逻辑越重，越靠近顶层的部分越接近业务本身逻辑，越往下逻辑越抽象，各部分逻辑功能的复用度也最高。
 - Client即用户实际访问网站时获取到的网站内容结构，同时该层也规范了生产环境的输出结构，为运维部署静态资源提供有价值的参考依据。并且client层要求各平台下各类项目之间零耦合，可以单独打包部署。当前版本的交易所项目中共需要输出如下内容：
 -web
---exchange //web端主板及其他
---SelectMarket //web端创新板
+
 -mobile
---exchange //移动端主站
+
 -common //全局公共模块，如tv,antd等
 - View层指的是用户交互层，即UI和UX部分。这部分的内容最终输出的是html网页，而这些视图页面又是由各类视图子组件组成的，组件间实现高度可复用，最底层的UI组件库直接使用的antd系列。
 - Logic层包含了全部数据通信及处理的逻辑代码。为了实现全局数据通信我们引入了mobx来管理数据驱动部分的功能。同时根据react技术栈的特性，我们将逻辑处理部分封装成react的逻辑组件来实现。并且根据交易所项目的特点在与服务端通信时采用了ajax和websocket两种模式。
@@ -80,12 +79,12 @@ http://localhost:6060/web/exchange/exchange.html
 该文件是用以配置开发环境编译选项时所使用的，诸如4.1中所提到的开发环境下每位开发人员均可自行编辑该文件以实现自己的开发需要，因此在git仓库中该文件是必须被添加到ignore清单中的。也由此，该文件在开发者第一次从git仓库拉取时是不存在的，必须由开发者根据规范自行创建，文件中所包含的配置项如下：
 ```javascript
 {
-    "projectName": "OSA",
+    "projectName": "",
     "deployContent": {
-      "web": ["SelectMarket"]
+      "web": [""]
     },
     "mode": "",
-    "localDevServer": "https://www1.xdaex.com"
+    "localDevServer": ""
 }
 ```
 - projectName描述了当前开发的项目名称，原则上约定一个git仓库只允许维护一个项目，而一个项目可以包含多个平台（web/mobile）下的多个单页或多页结构的页面。因此，无论是开发环境还是生产环境的编译都指的是编译该项目下的内容。该字段取值类型就是单一字符串。
@@ -102,7 +101,7 @@ http://localhost:6060/web/exchange/exchange.html
 该文件是用以配置生产环境输出时所使用的，具体配置例子如下：
 ```javascript
 {
-    "projectName": "OSA",
+    "projectName": "",
     "deployContent": {
         "web": [],
         "mobile": []
@@ -122,11 +121,11 @@ http://localhost:6060/web/exchange/exchange.html
 在大型项目开发中，我们经常会用到按需加载的路由方案以避免首屏加载时间过长的问题。这些路由在不同的平台以及平台对应的页面中重名的可能性极大（如login，home），为了在这些页面共同编译的过程中完全避免命名冲突，我们就需要在生成这些异步加载chunk时为其设置chunk名称，并在名称中融入平台和页面命名空间。以下是一个具体例子：
 ```javascript
 module.exports = Object.assign({
-    path: "/kycSetting",
+    path: "/home",
     getComponent: function(location, cb) {
         require.ensure([], function(require) {
-            cb(null, require("./components/kycSetting.jsx"))
-        }, 'web/exchange/chunk/kycSetting')
+            cb(null, require("./components/home.jsx"))
+        }, 'web/exchange/chunk/home')
     }
 }, routeEnter);
 ```
