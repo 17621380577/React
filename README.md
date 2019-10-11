@@ -19,7 +19,7 @@ npm install
       "mobile": []
     },
     "mode": "",
-    "localDevServer": "https://www1.xdaex.com"
+    "localDevServer": ""
 }
 ```
 以上配置的含义将在下述章节中详细阐述。
